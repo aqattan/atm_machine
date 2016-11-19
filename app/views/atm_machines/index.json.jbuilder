@@ -1,0 +1,1 @@
+json.array! @atm_machines, partial: 'atm_machines/atm_machine', as: :atm_machine

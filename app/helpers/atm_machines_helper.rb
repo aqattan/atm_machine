@@ -1,0 +1,2 @@
+module AtmMachinesHelper
+end

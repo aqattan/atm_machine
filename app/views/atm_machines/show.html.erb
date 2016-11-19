@@ -1,0 +1,5 @@
+<% if current_user.user_info.present? %>
+   <%= link_to 'Edit user info', edit_user_info_path(current_user.user_info, atm_info: @atm_machine.id) %>
+<%else%>
+   <%= link_to 'Add user info', new_user_info_path(atm_info: @atm_machine.id) %>
+<%end%>
