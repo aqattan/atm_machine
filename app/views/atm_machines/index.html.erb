@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Atm Machines</h1>
+
+<%= form_tag atm_machines_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search Near", :name => nil %>
+  </p>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @atm_machines.each do |atm_machine| %>
+      <tr>
+        <td><%= atm_machine.address %></td>
+        <td><%= atm_machine.latitude %></td>
+        <td><%= atm_machine.longitude %></td>
+        <td><%= link_to 'Show', atm_machine %></td>
+        <td><%= link_to 'Edit', edit_atm_machine_path(atm_machine) %></td>
+        <td><%= link_to 'Destroy', atm_machine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Atm machine', new_atm_machine_path %>
