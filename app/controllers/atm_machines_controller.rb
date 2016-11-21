@@ -4,9 +4,13 @@ class AtmMachinesController < ApplicationController
 
  # GET /atm_machines
  # GET /atm_machines.json
- def index
-   @atm_machines = AtmMachine.all
- end
+  def index
+  if params[:search].present?
+    @atm_machines = AtmMachine.near(params[:search], 50)
+  else
+    @atm_machines = AtmMachine.all
+  end
+  end
 
  # GET /atm_machines/1
  # GET /atm_machines/1.json

@@ -2,6 +2,13 @@
 
 <h1>Listing Atm Machines</h1>
 
+<%= form_tag atm_machines_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search Near", :name => nil %>
+  </p>
+<% end %>
+
 <table>
   <thead>
     <tr>
