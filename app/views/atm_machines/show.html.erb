@@ -1,22 +1,26 @@
+<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@atm_machine.latitude}%2C#{@atm_machine.longitude}" %>
+
+<h3>Nearby ATM Machine</h3>
+<ul>
+<% for atm_machine in @atm_machine.nearbys(10) %>
+  <li><%= link_to atm_machine.address, atm_machine %> (<%= atm_machine.distance.round(2) %> miles)</li>
+<% end %>
+</ul>
+
 <% if current_user.user_info.present? %>
    <%= link_to 'Edit user info', edit_user_info_path(current_user.user_info, atm_info: @atm_machine.id) %>
 <%else%>
    <%= link_to 'Add user info', new_user_info_path(atm_info: @atm_machine.id) %>
 <%end%>
 
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@atm_machine.latitude}%2C#{@atm_machine.longitude}" %>
-
-<h3>Nearby ATM_Machine</h3>
-<ul>
-<% for atm_machine in @atm_machine.nearbys(10) %>
-  <li><%= link_to atm_machine.address, atm_machine %> (<%= atm_machine.distance.round(2) %> miles)</li>
-<% end %>
-</ul>
 <%=link_to 'Add New Account', new_account_path %>
+
 <%=link_to 'Transactions', transactions_path %>
+
 <% if current_user.account.present?%>
     <%=link_to 'Deposit', new_deposit_account_path(current_user.account) %>
-    <h1><%= number_to_currency(current_user.account.balance)%></h1>
+    <%=link_to 'Withdrawal', new_withdrawal_account_path(current_user.account) %>
+    <h1>Total Balance <%=number_to_currency(current_user.account.balance)%></h1>
     <h1><%=params[:alert]%></h1>
     
 <%end%>

@@ -11,6 +11,15 @@ class AccountsController < ApplicationController
     redirect_to atm_machine_path(session[:my_atm_machine], alert: alert)
   end
   
+  def new_withdrawal
+    @account =Account.find(params[:id])
+  end
+  
+  def create_withdrawal 
+    @account = Account.find(params[:id])
+    alert = @account.withdrawal(withdrawal_params)
+    redirect_to atm_machine_path(session[:my_atm_machine], alert: alert)
+  end
 
   # GET /accounts
   # GET /accounts.json
@@ -85,6 +94,10 @@ class AccountsController < ApplicationController
     end
     
     def deposit_params
+      params.require(:account).permit(:amount)
+    end
+    
+    def withdrawal_params
       params.require(:account).permit(:amount)
     end
 end
