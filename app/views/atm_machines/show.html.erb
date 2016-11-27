@@ -12,3 +12,15 @@
   <li><%= link_to atm_machine.address, atm_machine %> (<%= atm_machine.distance.round(2) %> miles)</li>
 <% end %>
 </ul>
+<%=link_to 'Add New Account', new_account_path %>
+<%=link_to 'Transactions', transactions_path %>
+<% if current_user.account.present?%>
+    <%=link_to 'Deposit', new_deposit_account_path(current_user.account) %>
+    <h1><%= number_to_currency(current_user.account.balance)%></h1>
+    <h1><%=params[:alert]%></h1>
+    
+<%end%>
+
+
+
+
