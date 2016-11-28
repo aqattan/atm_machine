@@ -16,6 +16,8 @@ class AtmMachinesController < ApplicationController
  # GET /atm_machines/1.json
  def show
    @user = User.find(current_user)
+   @atm_machine=AtmMachine.find(params[:id])
+   session[:my_atm_machine]= @atm_machine.id
  end
 
  # GET /atm_machines/new

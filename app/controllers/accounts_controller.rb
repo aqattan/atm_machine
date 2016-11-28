@@ -1,5 +1,25 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :edit, :update, :destroy]
+  
+  def new_deposit
+    @account = Account.find(params[:id])
+  end
+  
+  def create_deposit
+    @account = Account.find(params[:id])
+    alert =  @account.deposit(deposit_params)
+    redirect_to atm_machine_path(session[:my_atm_machine], alert: alert)
+  end
+  
+  def new_withdrawal
+    @account =Account.find(params[:id])
+  end
+  
+  def create_withdrawal 
+    @account = Account.find(params[:id])
+    alert = @account.withdrawal(withdrawal_params)
+    redirect_to atm_machine_path(session[:my_atm_machine], alert: alert)
+  end
 
   # GET /accounts
   # GET /accounts.json
@@ -25,7 +45,8 @@ class AccountsController < ApplicationController
   # POST /accounts.json
   def create
     @account = Account.new(account_params)
-
+    #Ali see here you need to add user add before saving new account
+    @account.user_id = current_user.id
     respond_to do |format|
       if @account.save
         format.html { redirect_to @account, notice: 'Account was successfully created.' }
@@ -70,5 +91,13 @@ class AccountsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
       params.require(:account).permit(:account_no, :balance, :user_id)
+    end
+    
+    def deposit_params
+      params.require(:account).permit(:amount)
+    end
+    
+    def withdrawal_params
+      params.require(:account).permit(:amount)
     end
 end
