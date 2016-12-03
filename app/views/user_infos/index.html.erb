@@ -1,8 +1,9 @@
+ <div class="container">
 <p id="notice"><%= notice %></p>
 
-<h1>Listing User Infos</h1>
+<u><h1>Listing User Information</h1></u>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>First name</th>
@@ -20,9 +21,7 @@
         <td><%= user_info.last_name %></td>
         <td><%= user_info.phone %></td>
         <td><%= user_info.email %></td>
-        <td><%= link_to 'Show', user_info %></td>
-        <td><%= link_to 'Edit', edit_user_info_path(user_info) %></td>
-        <td><%= link_to 'Destroy', user_info, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', user_info, class:"btn btn-success" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +29,5 @@
 
 <br>
 
-<%= link_to 'New User info', new_user_info_path %>
+<%=link_to 'Back', atm_machine_path(session[:my_atm_machine]), class:"btn btn-link"%>
+</div>

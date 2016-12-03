@@ -1,3 +1,4 @@
+<div class="container">
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Atm Machines</h1>
@@ -5,11 +6,11 @@
 <%= form_tag atm_machines_path, :method => :get do %>
   <p>
     <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search Near", :name => nil %>
+    <%= submit_tag "Search Near", :name => nil, class:"btn btn-primary" %>
   </p>
 <% end %>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Address</th>
@@ -25,9 +26,7 @@
         <td><%= atm_machine.address %></td>
         <td><%= atm_machine.latitude %></td>
         <td><%= atm_machine.longitude %></td>
-        <td><%= link_to 'Show', atm_machine %></td>
-        <td><%= link_to 'Edit', edit_atm_machine_path(atm_machine) %></td>
-        <td><%= link_to 'Destroy', atm_machine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', atm_machine, class:"btn btn-success" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -35,4 +34,5 @@
 
 <br>
 
-<%= link_to 'New Atm machine', new_atm_machine_path %>
+<%= link_to 'Add New ATM Machine', new_atm_machine_path, class:"btn btn-primary btn-lg btn-block"%>
+</div>
