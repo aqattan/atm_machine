@@ -1,10 +1,14 @@
+ <div class="container">
 <%= form_for @account, url: create_deposit_account_path, method: :post do |f| %>
  
   <div class="field">
-    <%= f.label :amount %><br>
+    <h2><%= f.label "Select Amount" %></h2><br>
     <%= f.text_field :amount %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit%>
   </div>
 <% end %>
+<%=link_to 'Back', atm_machine_path(session[:my_atm_machine]), class:"btn btn-link"%>
+</div>
+

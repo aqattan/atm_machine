@@ -1,9 +1,5 @@
+ <div class="container">
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Transaction no:</strong>
-  <%= @transaction.transaction_no %>
-</p>
 
 <p>
   <strong>Ammount:</strong>
@@ -15,5 +11,6 @@
   <%= @transaction.transaction_type %>
 </p>
 
-<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
-<%= link_to 'Back', transactions_path %>
+
+<%=link_to 'Back', transactions_path(account_id: current_user.account.id), class:"btn btn-link"%>
+</div>
