@@ -6,23 +6,24 @@
 <table class="table table-bordered">
   <thead>
     <tr>
+      <th>ATM</th>
       <th>Amount in Dollar</th>
       <th>Transaction type</th>
-      <th colspan="3"></th>
+      <th>Created At</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @transactions.each do |transaction| %>
+    <%@transactions. each do |transaction| %>
       <tr>
+        <td><%=transaction.atm_machine_id%></td>
         <td><%= transaction.ammount %></td>
         <td><% if transaction.transaction_type ==1 %>
             <%="Deposit"%>
             <%else%>
             <%="Withdrawal"%>
             <%end%></td>
-        
-        <td><%= link_to 'Show', transaction, class:"btn btn-success" %></td>
+        <td><%=transaction.created_at.in_time_zone("Central Time (US & Canada)")%></td>
       </tr>
     <% end %>
   </tbody>
