@@ -4,7 +4,7 @@
 <u><h3>Nearby ATM Machine</h3></u>
 <ul>
 <% for atm_machine in @atm_machine.nearbys(10) %>
-  <li><%= link_to atm_machine.address, atm_machine %> (<%= atm_machine.distance.round(2) %> miles)</li>
+ <li><%= link_to atm_machine.address, atm_machine %> (<%= atm_machine.distance.round(2) %> miles)</li>
 <% end %>
 </ul>
 
@@ -24,6 +24,7 @@
 <%end%>
 <%= link_to 'Back', atm_machines_path, class:"btn btn-link" %>
 </div>
+
 
 
 

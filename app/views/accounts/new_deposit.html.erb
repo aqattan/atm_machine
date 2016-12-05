@@ -1,8 +1,9 @@
- <div class="container">
+<div class="container">
+   <center>
+  <img src="https://www.bpiexpressonline.com/media/uploads/57abeca86b287_CAM.jpg" class="img-responsive" alt="Responsive image">
 <%= form_for @account, url: create_deposit_account_path, method: :post do |f| %>
- 
   <div class="field">
-    <h2><%= f.label "Select Amount" %></h2><br>
+    <h2><%= f.label "Select Amount to Deposit" %></h2><br>
     <%= f.text_field :amount %>
   </div>
   <div class="actions">
@@ -10,5 +11,6 @@
   </div>
 <% end %>
 <%=link_to 'Back', atm_machine_path(session[:my_atm_machine]), class:"btn btn-link"%>
+</center>
 </div>
 
