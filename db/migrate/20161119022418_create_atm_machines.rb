@@ -4,7 +4,7 @@ class CreateAtmMachines < ActiveRecord::Migration
       t.string :address
       t.float :latitude
       t.float :longitude
-
+      t.integer :atm_machine_id
       t.timestamps null: false
     end
   end
