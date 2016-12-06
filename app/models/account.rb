@@ -11,7 +11,7 @@ class Account < ActiveRecord::Base
             errors.add(:amount, "Please enter a valid amount")
             return false
         else
-            self.balance= self.balance + amnt[:amount].to_f
+            self.balance = self.balance + amnt[:amount].to_f
             self.save
             return true
         end
@@ -22,7 +22,7 @@ class Account < ActiveRecord::Base
             errors.add(:amount, "Please enter a valid amount")
             return false
         else
-            self.balance=self.balance - amnt2[:amount].to_f
+            self.balance = self.balance - amnt2[:amount].to_f
             self.save
             return true
         end
