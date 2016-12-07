@@ -12,8 +12,13 @@ class AccountsController < ApplicationController
         flash[:notice]="Deposit Created"
         redirect_to atm_machine_path(session[:my_atm_machine])
     else
-       flash[:alert]= @account.errors.full_messages.to_sentence
+      if deposit_params[:amount].to_f > 1000
+       flash[:alert] = "The Maximum Amount to Deposit is $1000"
        render :new_deposit
+      else
+       flash[:alert] = "Please Enter A Valid Amount"
+       render :new_deposit
+      end
     end
   end
   
@@ -28,8 +33,13 @@ class AccountsController < ApplicationController
       flash[:notice]= "Withdrawal Created"
       redirect_to atm_machine_path(session[:my_atm_machine])
     else
-      flash[:alert]= @account.errors.full_messages.to_sentence
-      render :new_withdrawal
+      if withdrawal_params[:amount].to_f > 500
+        flash[:alert]= "The Maximum Amount to Withdraw is $500"
+        render :new_withdrawal
+      else
+        flash[:alert] = "Please Enter A Valid Amount"
+        render :new_withdrawal
+      end
     end
   end
 

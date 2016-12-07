@@ -28,5 +28,7 @@
     <% end %>
   </tbody>
 </table>
+<h3>Download a Copy</h3>
+<%= link_to "Transactions.csv", transactions_path(account_id: params[:account_id], format: "csv"),class:"btn btn-default" %><br>
 <%=link_to 'Back', atm_machine_path(session[:my_atm_machine]), class:"btn btn-link"%>
 </div>
