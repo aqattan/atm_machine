@@ -7,18 +7,19 @@ class AccountsController < ApplicationController
   
   def create_deposit
     @account = Account.find(params[:id])
-    if deposit_params[:amount].to_f <= 1000 && @account.deposit(deposit_params)
+    if deposit_params[:amount].to_f <= 1000 && deposit_params[:amount].to_f > 0 && @account.deposit(deposit_params) 
         @account.transactions.create!(ammount: deposit_params[:amount], atm_machine_id: session[:my_atm_machine], transaction_type: 1)
         flash[:notice]="Deposit Created"
         redirect_to atm_machine_path(session[:my_atm_machine])
     else
-      if deposit_params[:amount].to_f > 1000
+      if deposit_params[:amount].to_f > 1000 
        flash[:alert] = "The Maximum Amount to Deposit is $1000"
-       render :new_deposit
+      elsif @account.errors.any?
+        flash[:alert]=@account.errors.full_messages.to_sentence
       else
        flash[:alert] = "Please Enter A Valid Amount"
-       render :new_deposit
       end
+      render :new_deposit
     end
   end
   
@@ -28,18 +29,19 @@ class AccountsController < ApplicationController
   
   def create_withdrawal 
     @account = Account.find(params[:id])
-    if withdrawal_params[:amount].to_f <= @account.balance && withdrawal_params[:amount].to_f <= 500 && @account.withdrawal(withdrawal_params)
+    if withdrawal_params[:amount].to_f <= 500 && withdrawal_params[:amount].to_f > 0 && withdrawal_params[:amount].to_f <= @account.balance && @account.withdrawal(withdrawal_params)
       @account.transactions.create!(ammount: withdrawal_params[:amount],atm_machine_id: session[:my_atm_machine], transaction_type: 2)
       flash[:notice]= "Withdrawal Created"
       redirect_to atm_machine_path(session[:my_atm_machine])
     else
       if withdrawal_params[:amount].to_f > 500
         flash[:alert]= "The Maximum Amount to Withdraw is $500"
-        render :new_withdrawal
+      elsif @account.errors.any?
+        flash[:alert]=@account.errors.full_messages.to_sentence
       else
         flash[:alert] = "Please Enter A Valid Amount"
-        render :new_withdrawal
       end
+      render :new_withdrawal
     end
   end
 

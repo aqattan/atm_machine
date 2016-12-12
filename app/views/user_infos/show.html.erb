@@ -1,6 +1,9 @@
 <div class="container">
+<center>
 <p id="notice"><%= notice %></p>
-
+<p>
+  <%= image_tag @user_info.image_url(:thumb), class:"img-circle" if @user_info.image?%>
+</p>
 <p>
   <strong>First name:</strong>
   <%= @user_info.first_name %>
@@ -16,11 +19,7 @@
   <%= @user_info.phone %>
 </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user_info.email %>
-</p>
 
-<%= link_to 'Edit', edit_user_info_path(@user_info), class:"btn btn-link" %> |
-<%= link_to 'Back', user_infos_path, class:"btn btn-link" %>
+<%=link_to 'Back', atm_machine_path(session[:my_atm_machine]), class:"btn btn-link"%>
+</center>
 </div>
