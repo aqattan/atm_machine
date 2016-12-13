@@ -1,5 +1,5 @@
 <div class="container">
-<%= form_for(@user_info) do |f| %>
+<%= form_for @user_info, :html =>{:multipart => true} do |f| %>
  
   <% if @user_info.errors.any? %>
     <div id="error_explanation">
@@ -25,6 +25,13 @@
     <%= f.label :phone %><br>
     <%= f.text_field :phone %>
   </div>
+  
+  <p>
+    <%= f.file_field :image, onchange: "validateFiles(this);",
+    data: { max_file_size: 5.megabytes }
+    %>
+  </p>
+
   <div class="actions">
     <%= f.submit %>
   </div>

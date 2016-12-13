@@ -27,7 +27,7 @@ class UserInfosController < ApplicationController
  # POST /user_infos.json
  def create
    @user_info = UserInfo.new(user_info_params)
-
+   @user_info.image = params[:file]
    respond_to do |format|
      if @user_info.save
        format.html { redirect_to atm_machine_path(session[:atm_id])}
@@ -71,6 +71,6 @@ class UserInfosController < ApplicationController
 
    # Never trust parameters from the scary internet, only allow the white list through.
    def user_info_params
-     params.require(:user_info).permit(:first_name, :last_name, :email, :phone, :user_id)
+     params.require(:user_info).permit(:first_name, :last_name, :email, :phone, :user_id, :image)
    end
 end
